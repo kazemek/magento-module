@@ -45,6 +45,12 @@
                     <type>html</type>
                 </ratepay_rechnung_invoice_template>
 
+                <ratepay_prepayment_invoice_template module="ratepay">
+                    <label>RatePAY Vorkasse Email Invoice</label>
+                    <file>ratepay_prepayment_invoice_template.html</file>
+                    <type>html</type>
+                </ratepay_prepayment_invoice_template>
+
                 <ratepay_rate_invoice_template module="ratepay">
                     <label>RatePAY Rate Email Invoice</label>
                     <file>ratepay_rate_invoice_template.html</file>
@@ -62,6 +68,12 @@
                     <file>ratepay_rechnung_creditmemo_template.html</file>
                     <type>html</type>
                 </ratepay_rechnung_creditmemo_template>
+
+                <ratepay_prepayment_creditmemo_template module="ratepay">
+                    <label>RatePAY Vorkasse Email Creditmemo</label>
+                    <file>ratepay_prepayment_creditmemo_template.html</file>
+                    <type>html</type>
+                </ratepay_prepayment_creditmemo_template>
 
                 <ratepay_rate_creditmemo_template module="ratepay">
                     <label>RatePAY Rate Email Creditmemo</label>
@@ -159,6 +171,22 @@
                 <min_order_total>20</min_order_total>
                 <max_order_total>1500</max_order_total>
             </ratepay_rechnung>
+
+            <ratepay_prepayment>
+                <active>0</active>
+                <model>ratepay/method_prepayment</model>
+                <order_status>pending_payment</order_status>
+                <payment_action>authorize</payment_action>
+                <title>RatePAY Vorkasse</title>
+                <allowspecific>0</allowspecific>
+                <logging>1</logging>
+                <sandbox>1</sandbox>
+                <due_days>14</due_days>
+                <specificcountry>DE</specificcountry>
+                <specificcurrency>EUR</specificcurrency>
+                <min_order_total>20</min_order_total>
+                <max_order_total>1500</max_order_total>
+            </ratepay_prepayment>
 
             <ratepay_rate>
                 <active>0</active>
