@@ -217,6 +217,9 @@ class PayIntelligent_Ratepay_Helper_Mapping extends Mage_Core_Helper_Abstract
             case 'ratepay_rechnung':
                 $loggingInfo['paymentMethod'] = 'INVOICE';
                 break;
+            case 'ratepay_prepayment':
+                $loggingInfo['paymentMethod'] = 'PREPAYMENT';
+                break;                
             case 'ratepay_rate':
                 $loggingInfo['paymentMethod'] = 'INSTALLMENT';
                 break;
@@ -356,6 +359,9 @@ class PayIntelligent_Ratepay_Helper_Mapping extends Mage_Core_Helper_Abstract
             case 'ratepay_rechnung':
                 $payment['method'] = 'INVOICE';
                 break;
+            case 'ratepay_prepayment':
+                $payment['method'] = 'PREPAYMENT';
+                break;                
             case 'ratepay_rate':
                 if($request == 'PAYMENT_REQUEST') {
                     $payment['installmentNumber'] = Mage::getSingleton('checkout/session')->getRatepayRateNumberOfRatesFull();

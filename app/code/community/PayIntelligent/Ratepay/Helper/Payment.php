@@ -32,6 +32,8 @@ class PayIntelligent_Ratepay_Helper_Payment extends Mage_Core_Helper_Abstract
         switch ($code) {
             case 'ratepay_rechnung':
                 return true;
+            case 'ratepay_prepayment':
+                return true;
             case 'ratepay_rate':
                 return true;
             case 'ratepay_directdebit':

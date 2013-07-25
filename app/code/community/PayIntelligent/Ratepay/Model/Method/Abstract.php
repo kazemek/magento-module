@@ -275,7 +275,8 @@ abstract class PayIntelligent_Ratepay_Model_Method_Abstract extends Mage_Payment
                 $payment->setAdditionalInformation('descriptor', $result['descriptor']);
 
             } else {
-                $this->_hidePaymentMethod();
+                //$this->_hidePaymentMethod();
+                Mage::Log("Hallo Welt");
                 Mage::throwException($this->_getHelper()->__('Pi PAYMENT_REQUEST Declined'));
             }
         } else {
