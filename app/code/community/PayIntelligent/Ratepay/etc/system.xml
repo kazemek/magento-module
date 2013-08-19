@@ -574,7 +574,7 @@
                             <label>Pi Specific countries</label>
                             <frontend_type>multiselect</frontend_type>
                             <sort_order>4</sort_order>
-                            <source_model>ratepay/source_rechnung_countries</source_model>
+                            <source_model>ratepay/source_rate_countries</source_model>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -584,7 +584,7 @@
                             <label>Pi Specific currencies</label>
                             <frontend_type>multiselect</frontend_type>
                             <sort_order>5</sort_order>
-                            <source_model>ratepay/source_rechnung_currency</source_model>
+                            <source_model>ratepay/source_rate_currency</source_model>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
