@@ -141,6 +141,19 @@ class PayIntelligent_Ratepay_Model_Request extends Mage_Core_Model_Abstract
                     return false;
                 }
                 break;
+            case 'PROFILE_REQUEST':
+                if($statusCode == "OK" && $resultCode == "500") {
+                    $resultMasterData = (array) $this->response->content->{'master-data'};
+                    $resultInstallmentConfiguration = (array) $this->response->content->{'installment-configuration-result'};
+                    $result[Mage::helper('ratepay')->__('Pi merchant configuration')] = $resultMasterData;
+                    $result[Mage::helper('ratepay')->__('Pi installment configuration')] = $resultInstallmentConfiguration;
+                    $this->error = '';
+                    return $result;
+                } else {
+                    $this->error = 'FAIL';
+                    return false;
+                }
+                break;
             case 'CALCULATION_REQUEST':
                 $successCodes = array('603', '671', '688', '689', '695', '696', '697', '698', '699');
                 if($statusCode == "OK" && in_array($reasonCode, $successCodes) && $resultCode == "502") {
@@ -278,6 +291,22 @@ class PayIntelligent_Ratepay_Model_Request extends Mage_Core_Model_Abstract
         $loggingInfo['requestType'] = 'CONFIGURATION_REQUEST';
         $this->sendXmlRequest($loggingInfo);
         return $this->validateResponse('CONFIGURATION_REQUEST');
+    }
+
+    /**
+     * Calls the PROFILE_REQUEST
+     *
+     * @param array $headInfo
+     * @param array $loggingInfo
+     * @return boolean|array
+     */
+    public function callProfileRequest($headInfo,$loggingInfo)
+    {
+        $this->constructXml();
+        $this->setRequestHead('PROFILE_REQUEST',$headInfo);
+        $loggingInfo['requestType'] = 'PROFILE_REQUEST';
+        $this->sendXmlRequest($loggingInfo);
+        return $this->validateResponse('PROFILE_REQUEST');
     }
 
     /**
@@ -598,3 +627,4 @@ class PayIntelligent_Ratepay_Model_Request extends Mage_Core_Model_Abstract
     }
 
 }
+

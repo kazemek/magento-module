@@ -18,7 +18,7 @@
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  */
 
-class PayIntelligent_Ratepay_Block_Adminhtml_Config extends Mage_Adminhtml_Block_Widget_Grid_Container
+class PayIntelligent_Ratepay_Block_Adminhtml_ConfigAction extends Mage_Adminhtml_Block_Widget_Grid_Container
 {
     /**
      * Construct
@@ -26,8 +26,8 @@ class PayIntelligent_Ratepay_Block_Adminhtml_Config extends Mage_Adminhtml_Block
     public function __construct()
     {
         $this->_blockGroup = 'ratepay';
-        $this->_controller = 'adminhtml_config';
-        $this->_headerText = Mage::helper('ratepay')->__('Pi Ratepay Config');
+        $this->_controller = 'adminhtml_configuration';
+        $this->_headerText = Mage::helper('ratepay')->__('Pi Ratepay Configuration');
         parent::__construct();
     }
 
@@ -37,6 +37,13 @@ class PayIntelligent_Ratepay_Block_Adminhtml_Config extends Mage_Adminhtml_Block
     protected function _prepareLayout()
     {
         $this->_removeButton('add');
+
+        $this->_addButton('save_config', array(
+            'label'     => Mage::helper('ratepay')->__('Pi saved config'),
+            'onclick'   => "setLocation('".$this->getUrl('*/*/configactioncontroller')."')",
+
+        ));
+
         return parent::_prepareLayout();
     }
 }

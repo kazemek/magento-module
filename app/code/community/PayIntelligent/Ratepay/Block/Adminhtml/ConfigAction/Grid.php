@@ -18,7 +18,7 @@
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  */
 
-class PayIntelligent_Ratepay_Block_Adminhtml_Config_Grid extends Mage_Adminhtml_Block_Widget_Grid
+class PayIntelligent_Ratepay_Block_Adminhtml_ConfigAction_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
     
     /**
@@ -27,10 +27,12 @@ class PayIntelligent_Ratepay_Block_Adminhtml_Config_Grid extends Mage_Adminhtml_
     public function __construct()
     {
         parent::__construct();
-        $this->setId('configGrid');
+        $this->setId('configActionGrid');
         $this->setDefaultSort('id');
         $this->setDefaultDir('DESC');
         $this->setSaveParametersInSession(true);
+        $this->setFilterVisibility(false);
+        $this->setPagerVisibility(false);
     }
 
     /**
@@ -53,11 +55,17 @@ class PayIntelligent_Ratepay_Block_Adminhtml_Config_Grid extends Mage_Adminhtml_
     {
         $data = $this->_callConfigRequest();
         if ($data) {
-            $collection = new Varien_Data_Collection(); 
-            foreach ($data as $key => $value) {
-                $obj = new Varien_Object();
-                $obj->addData(array('key' => $this->__($key), 'value' => $value));
-                $collection->addItem($obj);
+            $collection = new Varien_Data_Collection();
+            //print_r($data);
+
+            foreach ($data as $key => $subdata) {
+                foreach ($subdata as $subkey => $value) {
+                    $obj = new Varien_Object();
+                    if(!strpos($subkey, 'prepayment')) { // hiding prepayment
+                        $obj->addData(array('category' =>__($key) ,'key' => $this->__($subkey), 'value' => $value));
+                        $collection->addItem($obj);
+                    }
+                }
             }
                     
             return $collection;
@@ -82,19 +90,12 @@ class PayIntelligent_Ratepay_Block_Adminhtml_Config_Grid extends Mage_Adminhtml_
         );
         
         $loggingInfo = array(
-            'logging'       => true,
-            'requestType'   => 'CONFIGURATION_REQUEST',
-            'sandbox'       => Mage::getStoreConfig('payment/ratepay_rate/sandbox'),
-            'transactionId' => 'n/a',
-            'transactionShortId' => 'n/a',
-            'orderId'       => 'n/a',
-            'paymentMethod' => 'n/a',
-            'requestSubType'=> 'n/a',
-            'firstName'     => 'n/a',
-            'lastName'      => ''
+            'logging'       => false,
+            'requestType'   => 'PROFILE_REQUEST',
+            'sandbox'       => Mage::getStoreConfig('payment/ratepay_rate/sandbox')
         );
         
-        return $client->callConfigurationRequest($headInfo, $loggingInfo);
+        return $client->callProfileRequest($headInfo, $loggingInfo);
     }
 
     /**
@@ -104,6 +105,13 @@ class PayIntelligent_Ratepay_Block_Adminhtml_Config_Grid extends Mage_Adminhtml_
      */
     protected function _prepareColumns()
     {
+        $this->addColumn('category', array(
+            'header'    => Mage::helper('ratepay')->__('Pi category'),
+            'index'     => 'category',
+            'filter'    => false,
+            'sortable'  => false
+        ));
+
         $this->addColumn('key', array(
             'header'    => Mage::helper('ratepay')->__('Pi key'),
             'index'     => 'key',
@@ -120,4 +128,5 @@ class PayIntelligent_Ratepay_Block_Adminhtml_Config_Grid extends Mage_Adminhtml_
         
         return parent::_prepareColumns();
     }
+
 }
