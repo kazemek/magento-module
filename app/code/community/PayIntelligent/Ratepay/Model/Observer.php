@@ -111,6 +111,13 @@ class PayIntelligent_Ratepay_Model_Observer
                     // save entry in sales_payment_transaction
                     $message = 'PAYMENT_REQUEST SEND (authorize)';
                     $payment = $order->getPayment();
+
+                    if($payment->getMethod() == 'ratepay_prepayment') {
+                        $paymentStatus = 'pending_payment';
+                    } else {
+                        $paymentStatus = 'payment_success';
+                    }
+
                     if ($payment->getMethod() == 'ratepay_rate') {
                         $payment->setAdditionalInformation('Rate Total Amount', Mage::getSingleton('checkout/session')->getRatepayRateTotalAmount());
                         $payment->setAdditionalInformation('Rate Amount', Mage::getSingleton('checkout/session')->getRatepayRateAmount());
@@ -141,7 +148,7 @@ class PayIntelligent_Ratepay_Model_Observer
 
                     Mage::helper('ratepay/payment')->addNewTransaction($payment, Mage_Sales_Model_Order_Payment_Transaction::TYPE_AUTH, null, false, $message);
 
-                    $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, 'payment_success', 'success')->save();
+                    $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, $paymentStatus, 'success')->save();
                 } else {
                     $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, 'payment_failed', 'failure')->save();
                 }
