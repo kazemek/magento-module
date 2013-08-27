@@ -35,17 +35,17 @@
         <div id='<?php echo $_code ?>description' style="display:none;">
             <div>
                 <div style="font-weight:bold;">
-                    <span style="color:#FF0000;"><?php echo $this->getPaymentHelper()->getStoreName(); ?></span>
-                    <?php echo sprintf($this->__('Pi ratepay_info_block_1'), $this->getDueDays()) ?><br/>
+                    <?php echo $this->getPaymentHelper()->getStoreName(); ?>
+                    <?php echo sprintf($this->__('Pi ratepay_invoice_info_block_1'), $this->getDueDays()) ?><br/>
                 </div>
                 <br/>
                 <div>
-                    <?php echo $this->__('Pi ratepay_info_block_2') ?><span style="font-weight:bold;"><?php echo $this->__('Pi ratepay_info_block_3') ?><?php echo $this->getMinAmount(); ?> &euro;</span>
-                    <?php echo $this->__('Pi and') ?> <span style="font-weight:bold;"><?php echo $this->__('Pi ratepay_info_block_4') ?><?php echo $this->getMaxAmount(); ?> &euro;</span><?php echo $this->__('Pi ratepay_info_block_5') ?>
+                    <?php echo $this->__('Pi ratepay_invoice_info_block_2') ?><span style="font-weight:bold;"><?php echo $this->__('Pi ratepay_invoice_info_block_3') ?><?php echo $this->getMinAmount(); ?> &euro;</span>
+                    <?php echo $this->__('Pi and') ?> <span style="font-weight:bold;"><?php echo $this->__('Pi ratepay_invoice_info_block_4') ?><?php echo $this->getMaxAmount(); ?> &euro;</span><?php echo $this->__('Pi ratepay_invoice_info_block_5') ?>
                 </div>
                 <br/>
                 <div>
-                    <?php echo $this->__('Pi ratepay_info_block_6') ?>
+                    <?php echo $this->__('Pi ratepay_invoice_info_block_6') ?>
                 </div>
             </div>
             <hr/>
