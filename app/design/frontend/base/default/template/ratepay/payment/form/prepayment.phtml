@@ -20,7 +20,7 @@
 ?>
 
 <?php $_code = $this->getMethodCode() ?>
-<!-- @todo warum rate style im rechnung template??? -->
+<!-- @todo warum rate style im prepayment template??? -->
 <style>
     .sp-methods select.ratepayday {width:154px ; margin-right: 7px;}
     .sp-methods select.ratepaymonth {width: 154px ; margin-right: 7px;}
@@ -86,7 +86,7 @@
     <?php if (!$this->isDobSet()): ?>
         <li>
             <label for="month" class="required"><em>*</em><?php echo $this->__('Pi Date of Birth') ?></label>
-            <div class="input-box customer-dob ratepayrechnungdob" id="">
+            <div class="input-box customer-dob ratepayprepaymentdob" id="">
                 <div class="dob-day">
                     <input type="text" class="input-text validate-custom" title="<?php echo $this->__('Pi Day') ?>" value="" name="payment[<?php echo $_code ?>_day]" id="<?php echo $_code ?>_day">
                     <label for="<?php echo $_code ?>_day">DD</label>
@@ -107,7 +107,7 @@
             </div>
             <script type="text/javascript">
                 //&lt;![CDATA[
-                var customer_dob = new Varien.RatepayDOB('.ratepayrechnungdob', true, '%d.%m.%y');
+                var customer_dob = new Varien.RatepayDOB('.ratepayprepaymentdob', true, '%d.%m.%y');
                 //]]&gt;
             </script>
         </li>
@@ -120,7 +120,7 @@
                     </td>
                     <td>
                           <label for="<?php echo $_code ?>_agreement" class="required ratepayagreement">
-                          <?php echo $this->__('Pi ratepay_terms_block_1');?> <a target="_blank" href="<?php echo Mage::getStoreConfig("payment/ratepay_rechnung/privacy_policy",$this->getQuote()->getStoreId()); ?>"><?php echo $this->__('Pi RatePAY Data Privacy Policy');?></a>
+                          <?php echo $this->__('Pi ratepay_terms_block_1');?> <a target="_blank" href="<?php echo Mage::getStoreConfig("payment/ratepay_prepayment/privacy_policy",$this->getQuote()->getStoreId()); ?>"><?php echo $this->__('Pi RatePAY Data Privacy Policy');?></a>
                             <?php echo $this->__('Pi ratepay_terms_block_2');?></label>
                     </td>
                 </tr>
