@@ -27,7 +27,7 @@ class PayIntelligent_Ratepay_OneclickconfigController extends Mage_Adminhtml_Con
      */
     private $paymentMethods = array('invoice' => 'rechnung',
                                     'installment' => 'rate',
-                                    'directdebit' => 'elv',
+                                    'elv' => 'directdebit',
                                     'prepayment' => 'prepayment');
 
     /**
@@ -100,7 +100,7 @@ class PayIntelligent_Ratepay_OneclickconfigController extends Mage_Adminhtml_Con
             $coreConfig->saveConfig('payment/ratepay_' . $dbMethod . '/max_order_total', $merchantConfig['tx-limit-' . $prMethod . '-max']);
 
             $coreConfig->saveConfig('payment/ratepay_' . $dbMethod . '/b2b', ($merchantConfig['b2b-' . $prMethod] == 'yes') ? 1 : 0);
-            //$coreConfig->saveConfig('payment/ratepay_' . $dbMethod . '/???', ($merchantConfig['delivery-address-' . $prMethod] == 'yes') ? 1 : 0);
+            $coreConfig->saveConfig('payment/ratepay_' . $dbMethod . '/delivery_address', ($merchantConfig['delivery-address-' . $prMethod] == 'yes') ? 1 : 0);
         }
     }
 

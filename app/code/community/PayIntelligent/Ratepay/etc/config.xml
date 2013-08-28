@@ -109,6 +109,10 @@
                         <table>pi_ratepay_debitdetails</table>
                     </debitdetails>
 
+                    <debitdetails>
+                        <table>pi_ratepay_rate_configuration</table>
+                    </debitdetails>
+
                 </entities>
             </ratepay_mysql4>
 
