@@ -40,7 +40,7 @@ class PayIntelligent_Ratepay_Block_Adminhtml_Configuration extends Mage_Adminhtm
 
         $this->_addButton('save_config', array(
             'label'     => Mage::helper('ratepay')->__('Pi save config'),
-            'onclick'   => "setLocation('".$this->getUrl('*/*/configactioncontroller')."')",
+            'onclick'   => "setLocation('".$this->getUrl("*/oneclickconfig/config", array('_secure' => true))."')",
 
         ));
 

@@ -62,7 +62,7 @@ class PayIntelligent_Ratepay_Block_Adminhtml_Configuration_Grid extends Mage_Adm
                 foreach ($subdata as $subkey => $value) {
                     $obj = new Varien_Object();
                     if(!strpos($subkey, 'prepayment')) { // hiding prepayment
-                        $obj->addData(array('category' =>__($key) ,'key' => $this->__($subkey), 'value' => $value));
+                        $obj->addData(array('category' =>__(Mage::helper('ratepay')->__($key)) ,'key' => $this->__($subkey), 'value' => $value));
                         $collection->addItem($obj);
                     }
                 }

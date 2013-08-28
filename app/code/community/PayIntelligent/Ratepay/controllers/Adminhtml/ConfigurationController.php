@@ -41,4 +41,15 @@ class PayIntelligent_Ratepay_Adminhtml_ConfigurationController extends Mage_Admi
     {
         $this->_initAction()->renderLayout();
     }
+
+    /**
+     * Render the config layout after saving configuration
+     *
+     * @return PayIntelligent_Ratepay_Adminhtml_ConfigController
+     */
+    public function savedAction()
+    {
+        $this->indexAction();
+    }
+
 }

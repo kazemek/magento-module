@@ -145,8 +145,8 @@ class PayIntelligent_Ratepay_Model_Request extends Mage_Core_Model_Abstract
                 if($statusCode == "OK" && $resultCode == "500") {
                     $resultMasterData = (array) $this->response->content->{'master-data'};
                     $resultInstallmentConfiguration = (array) $this->response->content->{'installment-configuration-result'};
-                    $result[Mage::helper('ratepay')->__('Pi merchant configuration')] = $resultMasterData;
-                    $result[Mage::helper('ratepay')->__('Pi installment configuration')] = $resultInstallmentConfiguration;
+                    $result['merchant_config'] = $resultMasterData;
+                    $result['installment_config'] = $resultInstallmentConfiguration;
                     $this->error = '';
                     return $result;
                 } else {
