@@ -583,7 +583,7 @@ class PayIntelligent_Ratepay_Model_Request extends Mage_Core_Model_Abstract
         $client->setRawData(trim($this->request->asXML(), "\xef\xbb\xbf"), "text/xml; charset=UTF-8");
         $response = $client->request('POST');
         $this->response = new SimpleXMLElement($response->getBody());
-        if($loggingInfo['logging'] && $loggingInfo['requestType'] != 'CALCULATION_REQUEST') {
+        if($loggingInfo['logging'] && $loggingInfo['requestType'] != 'CALCULATION_REQUEST' && $loggingInfo['requestType'] != 'CONFIGURATION_REQUEST') {
             Mage::getSingleton('ratepay/logging')->log($loggingInfo, $this->request, $this->response);
         }
         return $this->response;

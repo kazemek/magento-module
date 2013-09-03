@@ -109,9 +109,9 @@
                         <table>pi_ratepay_debitdetails</table>
                     </debitdetails>
 
-                    <debitdetails>
+                    <rateconfig>
                         <table>pi_ratepay_rate_configuration</table>
-                    </debitdetails>
+                    </rateconfig>
 
                 </entities>
             </ratepay_mysql4>
@@ -166,6 +166,7 @@
                 <order_status>pending_payment</order_status>
                 <payment_action>authorize</payment_action>
                 <title>RatePAY Rechnung</title>
+                <privacy_policy>http://www.ratepay.com/zusaetzliche-geschaeftsbedingungen-und-datenschutzhinweis</privacy_policy>
                 <allowspecific>0</allowspecific>
                 <logging>1</logging>
                 <sandbox>1</sandbox>
@@ -182,6 +183,7 @@
                 <order_status>pending_payment</order_status>
                 <payment_action>authorize</payment_action>
                 <title>RatePAY Vorkasse</title>
+                <privacy_policy>http://www.ratepay.com/zusaetzliche-geschaeftsbedingungen-und-datenschutzhinweis</privacy_policy>
                 <allowspecific>0</allowspecific>
                 <logging>1</logging>
                 <sandbox>1</sandbox>
@@ -198,6 +200,7 @@
                 <order_status>pending_payment</order_status>
                 <payment_action>authorize</payment_action>
                 <title>RatePAY Rate</title>
+                <privacy_policy>http://www.ratepay.com/zusaetzliche-geschaeftsbedingungen-und-datenschutzhinweis</privacy_policy>
                 <allowspecific>0</allowspecific>
                 <logging>1</logging>
                 <sandbox>1</sandbox>
@@ -215,6 +218,7 @@
                 <order_status>pending_payment</order_status>
                 <payment_action>authorize</payment_action>
                 <title>RatePAY Lastschrift</title>
+                <privacy_policy>http://www.ratepay.com/zusaetzliche-geschaeftsbedingungen-und-datenschutzhinweis</privacy_policy>
                 <allowspecific>0</allowspecific>
                 <logging>1</logging>
                 <sandbox>1</sandbox>

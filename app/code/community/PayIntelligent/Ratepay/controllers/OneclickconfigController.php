@@ -109,6 +109,6 @@ class PayIntelligent_Ratepay_OneclickconfigController extends Mage_Adminhtml_Con
      */
     protected function _setInstallmentConfig($installmentConfig)
     {
-
+        Mage::getModel('ratepay/rateconfig')->setConfig($installmentConfig);
     }
 }

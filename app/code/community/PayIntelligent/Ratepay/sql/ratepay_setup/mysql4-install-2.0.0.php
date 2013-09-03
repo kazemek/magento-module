@@ -67,6 +67,8 @@ CREATE TABLE IF NOT EXISTS `pi_ratepay_rate_configuration` (
   `service_charge` double NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+INSERT INTO `pi_ratepay_rate_configuration` (`id`) VALUES (0);
 ");
 
 $installer->endSetup();
