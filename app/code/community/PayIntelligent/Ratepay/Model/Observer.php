@@ -33,12 +33,13 @@ class PayIntelligent_Ratepay_Model_Observer
             $skuInvoice = Mage::getStoreConfig('payment/ratepay_rechnung/payment_fee', $quote->getStoreId());
             $skuElv = Mage::getStoreConfig('payment/ratepay_directdebit/payment_fee', $quote->getStoreId());
             $skuRate = Mage::getStoreConfig('payment/ratepay_rate/payment_fee', $quote->getStoreId());
+            $skuPrepayment = Mage::getStoreConfig('payment/ratepay_prepayment/payment_fee', $quote->getStoreId());
             $paymentMethod = $observer->getEvent()->getData('input')->getData('method');
             $sku = Mage::getStoreConfig('payment/' . $paymentMethod . '/payment_fee', $quote->getStoreId());
             if (Mage::helper('ratepay/payment')->isRatepayPayment($paymentMethod)) {
                 $flag = true;
                 foreach ($quote->getAllItems() as $item) {
-                    if (($item->getSku() == $skuInvoice || $item->getSku() == $skuElv || $item->getSku() == $skuRate) && $item->getSku() != $sku) {
+                    if (($item->getSku() == $skuInvoice || $item->getSku() == $skuElv || $item->getSku() == $skuRate || $item->getSku() == $skuPrepayment) && $item->getSku() != $sku) {
                         $quote->removeItem($item->getId());
                     }
                     
@@ -59,7 +60,7 @@ class PayIntelligent_Ratepay_Model_Observer
                 }
             } else {
                 foreach ($quote->getAllItems() as $item) {
-                    if ($item->getSku() == $skuInvoice || $item->getSku() == $skuElv || $item->getSku() == $skuRate) {
+                    if ($item->getSku() == $skuInvoice || $item->getSku() == $skuElv || $item->getSku() == $skuRate || $item->getSku() == $skuPrepayment) {
                         $quote->removeItem($item->getId());
                     }
                 }

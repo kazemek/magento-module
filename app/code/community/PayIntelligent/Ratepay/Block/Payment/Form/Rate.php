@@ -61,11 +61,12 @@ class PayIntelligent_Ratepay_Block_Payment_Form_Rate extends PayIntelligent_Rate
                 Mage::getSingleton('checkout/session')->setRatepayRateRate(null);
                 Mage::getSingleton('checkout/session')->setRatepayRateLastRate(null);
 
-                $client = Mage::getSingleton('ratepay/request');
-                $helper = Mage::helper('ratepay/mapping');
-                $result = $client->callConfigurationRequest($helper->getRequestHead($this->getQuote(),'', $this->getMethodCode()),$helper->getLoggingInfo($this->getQuote(),$this->getMethodCode()));
-                if (is_array($result) || $result == true) {
-                    return explode(',', $result['monthAllowed']);
+                $dbConfig = Mage::getSingleton('ratepay/rateconfig');
+                $result = $dbConfig->getConfig();
+                $row = 0;
+
+                if ($result[$row]['month_allowed']) {
+                    return explode(',', $result[$row]['month_allowed']);
                 } else {
                     return array();
                 }

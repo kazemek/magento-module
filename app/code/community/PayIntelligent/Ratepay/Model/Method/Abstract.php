@@ -196,14 +196,13 @@ abstract class PayIntelligent_Ratepay_Model_Method_Abstract extends Mage_Payment
         $shippingAddress = $quote->getShippingAddress();
         $diff = array_diff($this->getHelper()->getImportantAddressData($shippingAddress), $this->getHelper()->getImportantAddressData($billingAddress));
 
-        if (count($diff)) {
+        if (!$this->getConfigData('delivery_address', $storeId) && count($diff)) {
             return false;
         }
 
         $company = $quote->getBillingAddress()->getCompany();
         $vatId = $quote->getCustomerTaxvat();
         if (!$this->getConfigData('b2b', $storeId) && (!empty($vatId) || !empty($company))) {
-
             return false;
         }
 

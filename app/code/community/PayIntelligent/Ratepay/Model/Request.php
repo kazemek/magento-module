@@ -118,7 +118,7 @@ class PayIntelligent_Ratepay_Model_Request extends Mage_Core_Model_Abstract
                     return false;
                 }
                 break;
-            case 'CONFIGURATION_REQUEST':
+            case 'CONFIGURATION_REQUEST': // deprecated
                 if($statusCode == "OK" && $resultCode == "500") {
                     $result = array();
                     $result['interestrateMin'] = (string) $this->response->content->{'installment-configuration-result'}->{'interestrate-min'};

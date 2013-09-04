@@ -36,4 +36,9 @@ class PayIntelligent_Ratepay_Model_Rateconfig extends Mage_Core_Model_Abstract
             ->setServiceCharge($config['service-charge'])
             ->save();
     }
+
+    public function getConfig()
+    {
+        return $this->getCollection()->getData();
+    }
 }
