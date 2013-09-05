@@ -1,8 +1,10 @@
 ***********************************************************
-*********| Version 2.0.8vk - Released 2013-08-27 |*********
+**********| Version 3.0.0 - Released 2013-09-04 |**********
 ***********************************************************
- * added the fourth RP payment 'prepayment'/'Vorkasse'.
+ * added the fourth RP payment method 'prepayment'/'Vorkasse'.
    still incomplete without callback infrastructure
+ * added 1 click config incl cached configration response
+ * adapted Ratenrechner
 
 ***********************************************************
 **********| Version 2.0.8 - Released 2012-05-23 |**********
