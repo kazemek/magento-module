@@ -118,7 +118,7 @@ class PayIntelligent_Ratepay_Model_Request extends Mage_Core_Model_Abstract
                     return false;
                 }
                 break;
-            case 'CONFIGURATION_REQUEST':
+            case 'CONFIGURATION_REQUEST': // deprecated
                 if($statusCode == "OK" && $resultCode == "500") {
                     $result = array();
                     $result['interestrateMin'] = (string) $this->response->content->{'installment-configuration-result'}->{'interestrate-min'};
@@ -134,6 +134,19 @@ class PayIntelligent_Ratepay_Model_Request extends Mage_Core_Model_Abstract
                     $result['rateMinNormal'] = (string) $this->response->content->{'installment-configuration-result'}->{'rate-min-normal'};
                     $result['rateMinLongrun'] = (string) $this->response->content->{'installment-configuration-result'}->{'rate-min-longrun'};
                     $result['serviceCharge'] = (string) $this->response->content->{'installment-configuration-result'}->{'service-charge'};
+                    $this->error = '';
+                    return $result;
+                } else {
+                    $this->error = 'FAIL';
+                    return false;
+                }
+                break;
+            case 'PROFILE_REQUEST':
+                if($statusCode == "OK" && $resultCode == "500") {
+                    $resultMasterData = (array) $this->response->content->{'master-data'};
+                    $resultInstallmentConfiguration = (array) $this->response->content->{'installment-configuration-result'};
+                    $result['merchant_config'] = $resultMasterData;
+                    $result['installment_config'] = $resultInstallmentConfiguration;
                     $this->error = '';
                     return $result;
                 } else {
@@ -278,6 +291,22 @@ class PayIntelligent_Ratepay_Model_Request extends Mage_Core_Model_Abstract
         $loggingInfo['requestType'] = 'CONFIGURATION_REQUEST';
         $this->sendXmlRequest($loggingInfo);
         return $this->validateResponse('CONFIGURATION_REQUEST');
+    }
+
+    /**
+     * Calls the PROFILE_REQUEST
+     *
+     * @param array $headInfo
+     * @param array $loggingInfo
+     * @return boolean|array
+     */
+    public function callProfileRequest($headInfo,$loggingInfo)
+    {
+        $this->constructXml();
+        $this->setRequestHead('PROFILE_REQUEST',$headInfo);
+        $loggingInfo['requestType'] = 'PROFILE_REQUEST';
+        $this->sendXmlRequest($loggingInfo);
+        return $this->validateResponse('PROFILE_REQUEST');
     }
 
     /**
@@ -554,7 +583,7 @@ class PayIntelligent_Ratepay_Model_Request extends Mage_Core_Model_Abstract
         $client->setRawData(trim($this->request->asXML(), "\xef\xbb\xbf"), "text/xml; charset=UTF-8");
         $response = $client->request('POST');
         $this->response = new SimpleXMLElement($response->getBody());
-        if($loggingInfo['logging'] && $loggingInfo['requestType'] != 'CALCULATION_REQUEST') {
+        if($loggingInfo['logging'] && $loggingInfo['requestType'] != 'CALCULATION_REQUEST' && $loggingInfo['requestType'] != 'CONFIGURATION_REQUEST') {
             Mage::getSingleton('ratepay/logging')->log($loggingInfo, $this->request, $this->response);
         }
         return $this->response;
@@ -598,3 +627,4 @@ class PayIntelligent_Ratepay_Model_Request extends Mage_Core_Model_Abstract
     }
 
 }
+

@@ -39,16 +39,16 @@
         <block type="ratepay/adminhtml_logs_grid" name="adminhtml_logs.grid" output="toHtml"></block>
     </ratepay_adminhtml_logs_grid>
     
-    <ratepay_adminhtml_config_grid>
+    <ratepay_adminhtml_configuration_grid>
         <update handle="formkey"/>
-        <block type="ratepay/adminhtml_config_grid" name="adminhtml_config.grid" output="toHtml"></block>
-    </ratepay_adminhtml_config_grid>
+        <block type="ratepay/adminhtml_configuration_grid" name="adminhtml_configuration.grid" output="toHtml"></block>
+    </ratepay_adminhtml_configuration_grid>
     
-    <ratepay_adminhtml_config_index>
+    <ratepay_adminhtml_configuration_index>
         <reference name="content">
-            <block type="ratepay/adminhtml_config" name="adminhtml_config.grid.container" />
+            <block type="ratepay/adminhtml_configuration" name="adminhtml_configuration.grid.container" />
         </reference>
-    </ratepay_adminhtml_config_index>
+    </ratepay_adminhtml_configuration_index>
     
     <ratepay_adminhtml_bulk_grid>
         <update handle="formkey"/>

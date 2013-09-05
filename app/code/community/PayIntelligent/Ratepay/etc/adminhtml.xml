@@ -31,11 +31,11 @@
                     <sort_order>10</sort_order>
                     <action>ratepay/adminhtml_logs</action>
                 </ratepay_logs>
-                <ratepay_config translate="title" module="ratepay">
-                    <title>Config</title>
+                <ratepay_configuration translate="title" module="ratepay">
+                    <title>Konfiguration</title>
                     <sort_order>11</sort_order>
-                    <action>ratepay/adminhtml_config</action>
-                </ratepay_config>
+                    <action>ratepay/adminhtml_configuration</action>
+                </ratepay_configuration>
                 <ratepay_bulk translate="title" module="ratepay">
                     <title>Bulk</title>
                     <sort_order>12</sort_order>
@@ -58,16 +58,16 @@
                             </ratepay_logs>
                         </children>
                     </logs>
-                    <config>
-                        <title>Config</title>
+                    <configuration>
+                        <title>Configuration</title>
                         <sort_order>70</sort_order>
                         <children>
-                            <ratepay_config>
+                            <ratepay_configuration>
                                 <title>RatePAY</title>
                                 <sort_order>11</sort_order>
-                            </ratepay_config>
+                            </ratepay_configuration>
                         </children>
-                    </config>
+                    </configuration>
                     <bulk>
                         <title>Bulk</title>
                         <sort_order>80</sort_order>

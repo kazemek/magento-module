@@ -18,7 +18,7 @@
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  */
 
-class PayIntelligent_Ratepay_Adminhtml_ConfigController extends Mage_Adminhtml_Controller_Action
+class PayIntelligent_Ratepay_Adminhtml_ConfigurationController extends Mage_Adminhtml_Controller_Action
 {
     
     /**
@@ -28,7 +28,7 @@ class PayIntelligent_Ratepay_Adminhtml_ConfigController extends Mage_Adminhtml_C
      */
     protected function _initAction()
     {
-        $this->loadLayout()->_setActiveMenu('config/ratepay');
+        $this->loadLayout()->_setActiveMenu('configuration/ratepay');
         return $this;
     }
     
@@ -41,4 +41,15 @@ class PayIntelligent_Ratepay_Adminhtml_ConfigController extends Mage_Adminhtml_C
     {
         $this->_initAction()->renderLayout();
     }
+
+    /**
+     * Render the config layout after saving configuration
+     *
+     * @return PayIntelligent_Ratepay_Adminhtml_ConfigController
+     */
+    public function savedAction()
+    {
+        $this->indexAction();
+    }
+
 }

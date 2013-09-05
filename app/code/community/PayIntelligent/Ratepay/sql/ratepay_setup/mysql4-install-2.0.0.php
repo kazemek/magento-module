@@ -48,6 +48,27 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('pi_ratepay_log')}` (
   `reason` VARCHAR( 255 ) NOT NULL DEFAULT '',
    PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+CREATE TABLE IF NOT EXISTS `pi_ratepay_rate_configuration` (
+  `id` int(11) NOT NULL,
+  `interestrate_min` double NOT NULL,
+  `interestrate_default` double NOT NULL,
+  `interestrate_max` double NOT NULL,
+  `month_number_min` tinyint(2) NOT NULL,
+  `month_number_max` tinyint(2) NOT NULL,
+  `month_longrun` tinyint(2) NOT NULL,
+  `month_allowed` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `valid_payment_firstdays` tinyint(2) NOT NULL,
+  `payment_firstday` tinyint(2) NOT NULL,
+  `payment_amount` int(5) NOT NULL,
+  `payment_lastrate` int(5) NOT NULL,
+  `rate_min_normal` int(4) NOT NULL,
+  `rate_min_longrun` int(4) NOT NULL,
+  `service_charge` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+INSERT INTO `pi_ratepay_rate_configuration` (`id`) VALUES (0);
 ");
 
 $installer->endSetup();

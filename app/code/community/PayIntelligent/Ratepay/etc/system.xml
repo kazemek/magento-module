@@ -45,7 +45,7 @@
 
                         <active translate="label">
                             <label>Pi Enabled</label>
-                            <frontend_type>select</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
@@ -102,7 +102,7 @@
 
                         <min_order_total translate="label">
                             <label>Pi Minimum Order Total</label>
-                            <frontend_type>text</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <sort_order>8</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -112,7 +112,7 @@
 
                         <max_order_total translate="label">
                             <label>Pi Maximum Order Total</label>
-                            <frontend_type>text</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <sort_order>9</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -152,13 +152,23 @@
 
                         <b2b translate="label">
                             <label>Pi B2B</label>
-                            <frontend_type>select</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>30</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </b2b>
+
+                        <delivery_address translate="label">
+                            <label>Pi Delivery Address</label>
+                            <frontend_type>label</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>32</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </delivery_address>
 
                         <payment_fee translate="label">
                             <label>Pi RatePAY Payment Fee</label>
@@ -180,7 +190,7 @@
 
                         <privacy_policy translate="label">
                             <label>Pi RatePAY privacy policy URL</label>
-                            <frontend_type>text</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -209,7 +219,7 @@
 
                         <active translate="label">
                             <label>Pi Enabled</label>
-                            <frontend_type>select</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
@@ -266,7 +276,7 @@
 
                         <min_order_total translate="label">
                             <label>Pi Minimum Order Total</label>
-                            <frontend_type>text</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <sort_order>8</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -276,7 +286,7 @@
 
                         <max_order_total translate="label">
                             <label>Pi Maximum Order Total</label>
-                            <frontend_type>text</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <sort_order>9</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -316,13 +326,23 @@
 
                         <b2b translate="label">
                             <label>Pi B2B</label>
-                            <frontend_type>select</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>30</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </b2b>
+
+                        <delivery_address translate="label">
+                            <label>Pi Delivery Address</label>
+                            <frontend_type>label</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>32</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </delivery_address>
 
                         <payment_fee translate="label">
                             <label>Pi RatePAY Payment Fee</label>
@@ -344,7 +364,7 @@
 
                         <privacy_policy translate="label">
                             <label>Pi RatePAY privacy policy URL</label>
-                            <frontend_type>text</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -372,7 +392,7 @@
 
                         <active translate="label">
                             <label>Pi Enabled</label>
-                            <frontend_type>select</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
@@ -429,7 +449,7 @@
 
                         <min_order_total translate="label">
                             <label>Pi Minimum Order Total</label>
-                            <frontend_type>text</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <sort_order>8</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -439,7 +459,7 @@
 
                         <max_order_total translate="label">
                             <label>Pi Maximum Order Total</label>
-                            <frontend_type>text</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <sort_order>9</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -469,13 +489,23 @@
 
                         <b2b translate="label">
                             <label>Pi B2B</label>
-                            <frontend_type>select</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>30</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </b2b>
+
+                        <delivery_address translate="label">
+                            <label>Pi Delivery Address</label>
+                            <frontend_type>label</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>32</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </delivery_address>
 
                         <payment_fee translate="label">
                             <label>Pi RatePAY Payment Fee</label>
@@ -497,7 +527,7 @@
 
                         <privacy_policy translate="label">
                             <label>Pi RatePAY privacy policy URL</label>
-                            <frontend_type>text</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -554,7 +584,7 @@
                         </version>
                         <active translate="label">
                             <label>Pi Enabled</label>
-                            <frontend_type>select</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
@@ -610,7 +640,7 @@
 
                         <min_order_total translate="label">
                             <label>Pi Minimum Order Total</label>
-                            <frontend_type>text</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <sort_order>8</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -620,7 +650,7 @@
 
                         <max_order_total translate="label">
                             <label>Pi Maximum Order Total</label>
-                            <frontend_type>text</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <sort_order>9</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -660,13 +690,23 @@
 
                         <b2b translate="label">
                             <label>Pi B2B</label>
-                            <frontend_type>select</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>30</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </b2b>
+
+                        <delivery_address translate="label">
+                            <label>Pi Delivery Address</label>
+                            <frontend_type>label</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>32</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </delivery_address>
 
                         <payment_fee translate="label">
                             <label>Pi RatePAY Payment Fee</label>
@@ -688,7 +728,7 @@
 
                         <privacy_policy translate="label">
                             <label>Pi RatePAY privacy policy URL</label>
-                            <frontend_type>text</frontend_type>
+                            <frontend_type>label</frontend_type>
                             <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
