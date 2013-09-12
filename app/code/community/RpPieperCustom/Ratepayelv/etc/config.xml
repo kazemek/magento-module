@@ -1,0 +1,286 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category PayIntelligent
+ * @package PayIntelligent_RatePAY
+ * @copyright Copyright (c) 2011 PayIntelligent GmbH (http://www.payintelligent.de)
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+
+-->
+<config>
+
+    <modules>
+        <RpPieperCustom_Ratepayelv>
+            <version>2.0.8_PieperELV</version>
+        </RpPieperCustom_Ratepayelv>
+    </modules>
+
+    <global>
+
+        <blocks>
+            <ratepayelv>
+                <class>RpPieperCustom_Ratepayelv_Block</class>
+            </ratepayelv>
+        </blocks>
+
+        <template>
+            <email>
+
+                <ratepayelv_directdebit_invoice_template module="ratepay">
+                    <label>RatePAY Lastschrift Email Invoice</label>
+                    <file>ratepay_directdebit_invoice_template.html</file>
+                    <type>html</type>
+                </ratepayelv_directdebit_invoice_template>
+
+                <ratepayelv_directdebit_creditmemo_template module="ratepay">
+                    <label>RatePAY Lastschrift Email Creditmemo</label>
+                    <file>ratepay_directdebit_creditmemo_template.html</file>
+                    <type>html</type>
+                </ratepayelv_directdebit_creditmemo_template>
+
+            </email>
+        </template>
+
+        <models>
+
+            <ratepayelv>
+                <class>RpPieperCustom_Ratepayelvy_Model</class>
+                <resourceModel>ratepayelv_mysql4</resourceModel>
+            </ratepayelv>
+
+            <ratepayelv_mysql4>
+                <class>RpPieperCustom_Ratepayelv_Model_Mysql4</class>
+                <entities>
+
+                    <logging>
+                        <table>ratepayelv_log</table>
+                    </logging>
+
+                    <debitdetails>
+                        <table>ratepayelv_debitdetails</table>
+                    </debitdetails>
+
+                </entities>
+            </ratepayelv_mysql4>
+
+            <sales>
+                <rewrite>
+                    <order_pdf_invoice>RpPieperCustom_Ratepayelv_Model_Adminhtml_Order_Pdf_Invoice</order_pdf_invoice>
+                    <order_pdf_abstract>RpPieperCustom_Ratepayelv_Model_Adminhtml_Order_Pdf_Abstract</order_pdf_abstract>
+                    <order_pdf_shipment>RpPieperCustom_Ratepayelv_Model_Adminhtml_Order_Pdf_Shipment</order_pdf_shipment>
+                </rewrite>
+            </sales>
+
+        </models>
+
+        <helpers>
+            <ratepayelv>
+                <class>RpPieperCustom_Ratepayelv_Helper</class>
+            </ratepayelv>
+        </helpers>
+
+        <resources>
+            <ratepayelv_setup>
+                <setup>
+                    <module>RpPieperCustom_Ratepayelv</module>
+                </setup>
+
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ratepayelv_setup>
+
+            <ratepayelv_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </ratepayelv_write>
+
+            <ratepayelv_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </ratepayelv_read>
+        </resources>
+    </global>
+
+    <default>
+        <payment>
+            <ratepayelv_directdebit>
+                <active>0</active>
+                <model>ratepayelv/method_directdebit</model>
+                <order_status>pending_payment</order_status>
+                <payment_action>authorize</payment_action>
+                <title>RP Lastschrift (Standalone)</title>
+                <allowspecific>0</allowspecific>
+                <logging>1</logging>
+                <sandbox>1</sandbox>
+                <bankdata_saving>0</bankdata_saving>
+                <due_days>14</due_days>
+                <specificcountry>DE</specificcountry>
+                <specificcurrency>EUR</specificcurrency>
+                <min_order_total>20</min_order_total>
+                <max_order_total>1500</max_order_total>
+            </ratepayelv_directdebit>
+        </payment>
+    </default>
+
+    <frontend>
+        <layout>
+            <updates>
+                <ratepayelv>
+                    <file>ratepayelv.xml</file>
+                </ratepayelv>
+            </updates>
+        </layout>
+
+        <events>
+            <sales_quote_payment_import_data_before>
+                <observers>
+                    <rppiepercustom_ratepayelv_model_observer>
+                        <type>model</type>
+                        <class>RpPieperCustom_Ratepayelv_Model_Observer</class>
+                        <method>handlePaymentFee</method>
+                    </rppiepercustom_ratepayelv_model_observer>
+                </observers>
+            </sales_quote_payment_import_data_before>
+
+            <checkout_onepage_controller_success_action>
+                <observers>
+                    <sendRatepayConfirmCall>
+                        <class>ratepayelv/observer</class>
+                        <method>sendRatepayConfirmCall</method>
+                    </sendRatepayConfirmCall>
+                </observers>
+            </checkout_onepage_controller_success_action>
+        </events>
+
+        <translate>
+            <modules>
+                <RpPieperCustom_Ratepayelv>
+                    <files>
+                        <default>RpPieperCustom_Ratepayelv.csv</default>
+                    </files>
+                </RpPieperCustom_Ratepayelv>
+            </modules>
+        </translate>
+    </frontend>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <RpPieperCustom_Ratepayelv>
+                    <files>
+                        <default>RpPieperCustom_Ratepayelv.csv</default>
+                    </files>
+                </RpPieperCustom_Ratepayelv>
+            </modules>
+        </translate>
+
+        <layout>
+            <updates>
+                <ratepayelv>
+                    <file>ratepayelv.xml</file>
+                </ratepayelv>
+            </updates>
+        </layout>
+
+        <events>
+
+            <sales_quote_payment_import_data_before>
+                <observers>
+                    <rppiepercustom_ratepayelv_model_observer>
+                        <type>model</type>
+                        <class>RpPieperCustom_Ratepayelv_Model_Observer</class>
+                        <method>handlePaymentFee</method>
+                    </rppiepercustom_ratepayelv_model_observer>
+                </observers>
+            </sales_quote_payment_import_data_before>
+
+            <sales_order_invoice_register>
+                <observers>
+                    <sendRatepayDeliverCall>
+                        <class>ratepayelv/observer</class>
+                        <method>sendRatepayDeliverCall</method>
+                    </sendRatepayDeliverCall>
+                </observers>
+            </sales_order_invoice_register>
+
+            <sales_order_shipment_save_before>
+                <observers>
+                    <isInvoiceCreated>
+                        <class>ratepayelv/observer</class>
+                        <method>isInvoiceCreated</method>
+                    </isInvoiceCreated>
+                </observers>
+            </sales_order_shipment_save_before>
+
+            <sales_order_creditmemo_refund>
+                <observers>
+                    <sendRatepayCreditmemoCall>
+                        <class>ratepayelv/observer</class>
+                        <method>sendRatepayCreditmemoCall</method>
+                    </sendRatepayCreditmemoCall>
+                </observers>
+            </sales_order_creditmemo_refund>
+
+            <order_cancel_after>
+                <observers>
+                    <sendRatepayCancelCall>
+                        <class>ratepayelv/observer</class>
+                        <method>sendRatepayCancelCall</method>
+                    </sendRatepayCancelCall>
+                </observers>
+            </order_cancel_after>
+
+            <controller_action_postdispatch_adminhtml_sales_order_invoice_save>
+                <observers>
+                    <sendRatepayInvoiceEmail>
+                        <class>ratepayelv/observer</class>
+                        <method>sendRatepayInvoiceEmail</method>
+                    </sendRatepayInvoiceEmail>
+                </observers>
+            </controller_action_postdispatch_adminhtml_sales_order_invoice_save>
+
+        </events>
+
+    </adminhtml>
+
+   <admin>
+        <routers>
+            <ratepayelv>
+                <use>admin</use>
+                <args>
+                    <module>RpPieperCustom_Ratepayelv</module>
+                    <frontName>ratepayelv</frontName>
+                </args>
+            </ratepayelv>
+        </routers>
+    </admin>
+
+    <frontend>
+        <routers>
+            <ratepayelv>
+                <use>standard</use>
+                <args>
+                    <module>RpPieperCustom_Ratepayelv</module>
+                    <frontName>ratepayelv</frontName>
+                </args>
+            </ratepayelv>
+        </routers>
+    </frontend>
+
+</config>

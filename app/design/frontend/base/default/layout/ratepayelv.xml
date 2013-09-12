@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+
+-->
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addJs">
+                <script>ratepayelv/dobFix.js</script>
+            </action>
+            <action method="addJs">
+                <script>ratepayelv/elv.js</script>
+            </action>
+        </reference>
+    </default>
+</layout>
