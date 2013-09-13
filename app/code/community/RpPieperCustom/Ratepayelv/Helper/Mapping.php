@@ -18,7 +18,7 @@
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  */
 
-class PRpPieperCustom_Ratepayelv_Helper_Mapping extends Mage_Core_Helper_Abstract
+class RpPieperCustom_Ratepayelv_Helper_Mapping extends Mage_Core_Helper_Abstract
 {
     /**
      * Article preparations for PAYMENT_REQUEST, PAYMENT_CHANGE, CONFIRMATION_DELIVER

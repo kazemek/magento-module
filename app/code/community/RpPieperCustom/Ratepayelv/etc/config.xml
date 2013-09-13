@@ -57,7 +57,7 @@
         <models>
 
             <ratepayelv>
-                <class>RpPieperCustom_Ratepayelvy_Model</class>
+                <class>RpPieperCustom_Ratepayelv_Model</class>
                 <resourceModel>ratepayelv_mysql4</resourceModel>
             </ratepayelv>
 

@@ -18,7 +18,7 @@
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  */
 
-class RpPieperCustom_Ratepayelv_Model_Adminhtml_Order_Pdf_Shipment extends PayIntelligent_Ratepay_Model_Adminhtml_Order_Pdf_Abstract{
+class RpPieperCustom_Ratepayelv_Model_Adminhtml_Order_Pdf_Shipment extends RpPieperCustom_Ratepayelv_Model_Adminhtml_Order_Pdf_Abstract{
     /**
      * Create shipment as pdf
      *

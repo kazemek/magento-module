@@ -1,13 +1,13 @@
 <?php
 
-class Pi_Util_Encryption_PrivateKey
+class Rp_Util_Encryption_PrivateKey
 {
     private $_keyPath;
 
     public function __construct($pathModifier = null)
     {
         $pathModifier = isset($pathModifier)? $pathModifier : '/../../../';
-        $this->_keyPath = dirname(__FILE__) . $pathModifier . 'piPrivateKey.php';
+        $this->_keyPath = dirname(__FILE__) . $pathModifier . 'rpPrivateKey.php';
     }
 
     /*
@@ -21,7 +21,7 @@ class Pi_Util_Encryption_PrivateKey
             $this->createPrivateKey();
         }
         require_once $this->_keyPath;
-        return PI_PRIVATE_KEY;
+        return RP_PRIVATE_KEY;
     }
 
     /*
@@ -30,7 +30,7 @@ class Pi_Util_Encryption_PrivateKey
     private function createPrivateKey()
     {
         $datei = fopen($this->_keyPath, 'w');
-        fwrite($datei, '<?php DEFINE ("PI_PRIVATE_KEY", "'
+        fwrite($datei, '<?php DEFINE ("PR_PRIVATE_KEY", "'
             . $this->createRandomString(15, true)
             . $this->createRandomString(35, false)
             . $this->createRandomString(14, true) . '");'

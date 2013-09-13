@@ -1,6 +1,6 @@
 <?php
 
-class Pi_Util_Encryption_MagentoEncryption extends Pi_Util_Encryption_EncryptionAbstract
+class Rp_Util_Encryption_MagentoEncryption extends Rp_Util_Encryption_EncryptionAbstract
 {
     
     /**
@@ -8,7 +8,7 @@ class Pi_Util_Encryption_MagentoEncryption extends Pi_Util_Encryption_Encryption
      * 
      * @var string 
      */
-    protected $_tableName = 'pi_ratepay_debitdetails';
+    protected $_tableName = 'ratepayelv_debitdetails';
     
     /**
      * Insert query

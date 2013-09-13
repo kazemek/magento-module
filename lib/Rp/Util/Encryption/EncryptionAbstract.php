@@ -4,7 +4,7 @@
  * creates private key
  */
 
-abstract class Pi_Util_Encryption_EncryptionAbstract
+abstract class Rp_Util_Encryption_EncryptionAbstract
 {
     /**
      * Service responsible for private key handling.
@@ -14,11 +14,11 @@ abstract class Pi_Util_Encryption_EncryptionAbstract
 
     private $_privateKey;
 
-    protected $_tableName = 'pi_ratepay_debit_details';
+    protected $_tableName = 'ratepayelv_debitdetails';
 
-    public function __construct(Pi_Util_Encryption_PrivateKey $privateKeyService = null)
+    public function __construct(Rp_Util_Encryption_PrivateKey $privateKeyService = null)
     {
-        $this->_privateKeyService = isset($privateKeyService)? $privateKeyService : new Pi_Util_Encryption_PrivateKey();
+        $this->_privateKeyService = isset($privateKeyService)? $privateKeyService : new Rp_Util_Encryption_PrivateKey();
         $this->_privateKey = $this->_privateKeyService->getPrivateKey();
     }
 

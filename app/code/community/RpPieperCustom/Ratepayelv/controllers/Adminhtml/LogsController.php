@@ -96,7 +96,7 @@ class RpPieperCustom_Ratepayelv_Adminhtml_LogsController extends Mage_Adminhtml_
                 $countBefore = count(Mage::getModel('ratepayelv/logging')->getCollection());
                 $connection = Mage::getSingleton('core/resource')->getConnection('core_write');
                 $condition = 'date < DATE_SUB(now(),INTERVAL ' . $connection->quoteInto($days) . ' DAY)';
-                $table = Mage::getSingleton('core/resource')->getTableName('pi_ratepay_log');
+                $table = Mage::getSingleton('core/resource')->getTableName('ratepayelv_log');
                 $connection->query('DELETE FROM ' . $table . ' WHERE ' . $condition);
                 $countAfter = count(Mage::getModel('ratepayelv/logging')->getCollection());
                 $count = $countBefore - $countAfter;
