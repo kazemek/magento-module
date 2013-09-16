@@ -22,7 +22,7 @@ $installer = $this;
 $installer->startSetup();
 
 $installer->run("
-CREATE TABLE IF NOT EXISTS `{$this->getTable('ratepay_debitdetails')}` (
+CREATE TABLE IF NOT EXISTS `{$this->getTable('ratepayelv_debitdetails')}` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` varchar(256) NOT NULL,
   `owner` blob NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `{$this->getTable('ratepay_debitdetails')}` (
   PRIMARY KEY (`id`)
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-CREATE TABLE IF NOT EXISTS `{$this->getTable('ratepay_log')}` (
+CREATE TABLE IF NOT EXISTS `{$this->getTable('ratepayelv_log')}` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `order_number` VARCHAR( 255 ) NOT NULL,
   `transaction_id` VARCHAR( 255 ) NOT NULL,

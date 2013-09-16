@@ -71,7 +71,7 @@ class RpPieperCustom_Ratepayelv_Helper_Payment extends Mage_Core_Helper_Abstract
         $creditmemos = $order->getCreditmemosCollection();
         $creditmemoItems = array();
         foreach ($creditmemos as $creditmemo) {
-            foreach (Mage::helper('ratepay/mapping')->getArticles($creditmemo) as $article) {
+            foreach (Mage::helper('ratepayelv/mapping')->getArticles($creditmemo) as $article) {
                 ($article['articleNumber'] == 'DISCOUNT') ? $condition = $article['articleName']: $condition = $article['articleNumber'];
                 if (array_key_exists($condition, $creditmemoItems)) {
                     $creditmemoItems[$condition]['quantity'] += $article['quantity'];
@@ -102,7 +102,7 @@ class RpPieperCustom_Ratepayelv_Helper_Payment extends Mage_Core_Helper_Abstract
         $invoices = $order->getInvoiceCollection();
         $invoiceItems = array();
         foreach ($invoices as $invoice) {
-            foreach (Mage::helper('ratepay/mapping')->getArticles($invoice) as $article) {
+            foreach (Mage::helper('ratepayelv/mapping')->getArticles($invoice) as $article) {
                 ($article['articleNumber'] == 'DISCOUNT') ? $condition = $article['articleName'] : $condition = $article['articleNumber'];
                 if (array_key_exists($condition, $invoiceItems)) {
                     $invoiceItems[$condition]['quantity'] += $article['quantity'];
@@ -131,7 +131,7 @@ class RpPieperCustom_Ratepayelv_Helper_Payment extends Mage_Core_Helper_Abstract
     public function getTempCreditmemoItems(Mage_Sales_Model_Order_Creditmemo $creditmemo)
     {
         $creditmemoItems = array();
-        foreach (Mage::helper('ratepay/mapping')->getArticles($creditmemo) as $article) {
+        foreach (Mage::helper('ratepayelv/mapping')->getArticles($creditmemo) as $article) {
             ($article['articleNumber'] == 'DISCOUNT') ? $condition = $article['articleName'] : $condition = $article['articleNumber'];
             $creditmemoItems[$condition]['quantity'] = $article['quantity'];
             $creditmemoItems[$condition]['unitPrice'] = $article['unitPrice'];

@@ -318,11 +318,7 @@ class RpPieperCustom_Ratepayelv_Helper_Data extends Mage_Core_Helper_Abstract
     {
         $order = $this->getOrderByIncrementId($payment['orderId']);
         $code = $order->getPayment()->getMethodInstance()->getCode();
-        if ($code == 'ratepay_rate') {
-            $data = '';
-        } else {
-            $data = Mage::getStoreConfig('payment/' . $code . '/due_days', $order->getStoreId());
-        }
+        $data = Mage::getStoreConfig('payment/' . $code . '/due_days', $order->getStoreId());
         return $data;
     }
     
@@ -405,7 +401,7 @@ class RpPieperCustom_Ratepayelv_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function isInstallment($orderId)
     {
-        return Mage::getModel('sales/order')->loadByIncrementId($orderId)->getPayment()->getMethodInstance()->getCode() == 'ratepay_rate';
+        return false; //Mage::getModel('sales/order')->loadByIncrementId($orderId)->getPayment()->getMethodInstance()->getCode() == 'ratepay_rate';
     }
 
     /**

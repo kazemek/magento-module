@@ -40,7 +40,6 @@ class RpPieperCustom_Ratepayelv_Block_Adminhtml_Logs_Grid extends Mage_Adminhtml
      */
     public function __construct()
     {
-
         $this->setId('logs_grid');
         $this->setDefaultSort('id');
         $this->setDefaultDir('DESC');
@@ -143,7 +142,7 @@ class RpPieperCustom_Ratepayelv_Block_Adminhtml_Logs_Grid extends Mage_Adminhtml
             'header' => Mage::helper('ratepayelv')->__('Pi Result'),
             'index' => 'result_code',
             'sortable' => false,
-            'renderer' => 'ratepay/adminhtml_logs_grid_renderer_result',
+            'renderer' => 'ratepayelv/adminhtml_logs_grid_renderer_result',
         ));
 
         $this->addColumn('reason', array(

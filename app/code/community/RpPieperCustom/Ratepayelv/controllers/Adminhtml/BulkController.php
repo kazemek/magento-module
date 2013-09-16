@@ -28,7 +28,7 @@ class RpPieperCustom_Ratepayelv_Adminhtml_BulkController extends Mage_Adminhtml_
      */
     protected function _initAction()
     {
-        $this->loadLayout()->_setActiveMenu('bulk/ratepay');
+        $this->loadLayout()->_setActiveMenu('bulk/ratepayelv');
         return $this;
     }
 

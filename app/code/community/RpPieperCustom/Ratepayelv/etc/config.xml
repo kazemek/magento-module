@@ -39,15 +39,15 @@
         <template>
             <email>
 
-                <ratepayelv_directdebit_invoice_template module="ratepay">
+                <ratepayelv_directdebit_invoice_template module="ratepayelv">
                     <label>RatePAY Lastschrift Email Invoice</label>
-                    <file>ratepay_directdebit_invoice_template.html</file>
+                    <file>ratepayelv_directdebit_invoice_template.html</file>
                     <type>html</type>
                 </ratepayelv_directdebit_invoice_template>
 
-                <ratepayelv_directdebit_creditmemo_template module="ratepay">
+                <ratepayelv_directdebit_creditmemo_template module="ratepayelv">
                     <label>RatePAY Lastschrift Email Creditmemo</label>
-                    <file>ratepay_directdebit_creditmemo_template.html</file>
+                    <file>ratepayelv_directdebit_creditmemo_template.html</file>
                     <type>html</type>
                 </ratepayelv_directdebit_creditmemo_template>
 

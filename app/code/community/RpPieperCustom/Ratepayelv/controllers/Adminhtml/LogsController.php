@@ -28,7 +28,7 @@ class RpPieperCustom_Ratepayelv_Adminhtml_LogsController extends Mage_Adminhtml_
      */
     protected function _initAction()
     {
-        $this->loadLayout()->_setActiveMenu('logs/ratepay');
+        $this->loadLayout()->_setActiveMenu('logs/ratepayelv');
         return $this;
     }
     
@@ -51,9 +51,9 @@ class RpPieperCustom_Ratepayelv_Adminhtml_LogsController extends Mage_Adminhtml_
         !empty($id) ? $id = $this->getRequest()->getParam('id') : $id = $this->getRequest()->getParam('log_id');
         $model = Mage::getModel('ratepayelv/logging')->load($id);
         if ($model->getId()) {
-            Mage::register('ratepay_logging_data', $model);
+            Mage::register('ratepayelv_logging_data', $model);
             $this->_initAction();
-            $this->_addContent($this->getLayout()->createBlock('ratepay/adminhtml_logs_view'));
+            $this->_addContent($this->getLayout()->createBlock('ratepayelv/adminhtml_logs_view'));
             $this->renderLayout();
         } else {
             Mage::getSingleton('adminhtml/session')->addError(Mage::helper('ratepayelv')->__('Item does not exist'));
@@ -69,7 +69,7 @@ class RpPieperCustom_Ratepayelv_Adminhtml_LogsController extends Mage_Adminhtml_
         $logIds = $this->getRequest()->getParam('log_id');
 
         if (!is_array($logIds)) {
-            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('ratepay')->__('Please select log entries.'));
+            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('ratepayelv')->__('Please select log entries.'));
         } else {
             try {
                 foreach ($logIds as $logId) {

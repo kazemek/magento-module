@@ -33,7 +33,7 @@ class RpPieperCustom_Ratepayelv_Model_Observer
             $skuElv = Mage::getStoreConfig('payment/ratepayelv_directdebit/payment_fee', $quote->getStoreId());
             $paymentMethod = $observer->getEvent()->getData('input')->getData('method');
             $sku = Mage::getStoreConfig('payment/' . $paymentMethod . '/payment_fee', $quote->getStoreId());
-            if (Mage::helper('ratepay/payment')->isRatepayPayment($paymentMethod)) {
+            if (Mage::helper('ratepayelv/payment')->isRatepayPayment($paymentMethod)) {
                 $flag = true;
                 foreach ($quote->getAllItems() as $item) {
                     if ($item->getSku() == $skuElv && $item->getSku() != $sku) {
@@ -109,33 +109,6 @@ class RpPieperCustom_Ratepayelv_Model_Observer
                     // save entry in sales_payment_transaction
                     $message = 'PAYMENT_REQUEST SEND (authorize)';
                     $payment = $order->getPayment();
-                    if ($payment->getMethod() == 'ratepay_rate') {
-                        $payment->setAdditionalInformation('Rate Total Amount', Mage::getSingleton('checkout/session')->getRatepayRateTotalAmount());
-                        $payment->setAdditionalInformation('Rate Amount', Mage::getSingleton('checkout/session')->getRatepayRateAmount());
-                        $payment->setAdditionalInformation('Rate Interest Rate', Mage::getSingleton('checkout/session')->getRatepayRateInterestRate());
-                        $payment->setAdditionalInformation('Rate Interest Amount', Mage::getSingleton('checkout/session')->getRatepayRateInterestAmount());
-                        $payment->setAdditionalInformation('Rate Service Charge', Mage::getSingleton('checkout/session')->getRatepayRateServiceCharge());
-                        $payment->setAdditionalInformation('Rate Annual Percentage Rate', Mage::getSingleton('checkout/session')->getRatepayRateAnnualPercentageRate());
-                        $payment->setAdditionalInformation('Rate Monthly Debit Interest', Mage::getSingleton('checkout/session')->getRatepayRateMonthlyDebitInterest());
-                        $payment->setAdditionalInformation('Rate Number of Rates Full', Mage::getSingleton('checkout/session')->getRatepayRateNumberOfRatesFull());
-                        $payment->setAdditionalInformation('Rate Number of Rates', Mage::getSingleton('checkout/session')->getRatepayRateNumberOfRates());
-                        $payment->setAdditionalInformation('Rate Rate', Mage::getSingleton('checkout/session')->getRatepayRateRate());
-                        $payment->setAdditionalInformation('Rate Last Rate', Mage::getSingleton('checkout/session')->getRatepayRateLastRate());
-                        $payment->setAdditionalInformation('Debit Select', Mage::getSingleton('checkout/session')->getRatepayPaymentFirstDay());
-
-                        Mage::getSingleton('checkout/session')->setRatepayRateTotalAmount(null);
-                        Mage::getSingleton('checkout/session')->setRatepayRateAmount(null);
-                        Mage::getSingleton('checkout/session')->setRatepayRateInterestRate(null);
-                        Mage::getSingleton('checkout/session')->setRatepayRateInterestAmount(null);
-                        Mage::getSingleton('checkout/session')->setRatepayRateServiceCharge(null);
-                        Mage::getSingleton('checkout/session')->setRatepayRateAnnualPercentageRate(null);
-                        Mage::getSingleton('checkout/session')->setRatepayRateMonthlyDebitInterest(null);
-                        Mage::getSingleton('checkout/session')->setRatepayRateNumberOfRatesFull(null);
-                        Mage::getSingleton('checkout/session')->setRatepayRateNumberOfRates(null);
-                        Mage::getSingleton('checkout/session')->setRatepayRateRate(null);
-                        Mage::getSingleton('checkout/session')->setRatepayRateLastRate(null);
-                        Mage::getSingleton('checkout/session')->getRatepayPaymentFirstDay(null);
-                    }
 
                     Mage::helper('ratepayelv/payment')->addNewTransaction($payment, Mage_Sales_Model_Order_Payment_Transaction::TYPE_AUTH, null, false, $message);
 

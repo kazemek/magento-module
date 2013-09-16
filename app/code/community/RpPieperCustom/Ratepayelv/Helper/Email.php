@@ -49,7 +49,7 @@ class RpPieperCustom_Ratepayelv_Helper_Email extends Mage_Core_Helper_Abstract
         $initialEnvironmentInfo = $appEmulation->startEnvironmentEmulation($storeId);
 
         try {
-            $paymentBlock = Mage::helper('paymentelv')->getInfoBlock($order->getPayment())
+            $paymentBlock = Mage::helper('payment')->getInfoBlock($order->getPayment())
                 ->setIsSecureMode(true);
             $paymentBlock->getMethod()->setStore($storeId);
             $paymentBlockHtml = $paymentBlock->toHtml();
@@ -137,7 +137,7 @@ class RpPieperCustom_Ratepayelv_Helper_Email extends Mage_Core_Helper_Abstract
         $initialEnvironmentInfo = $appEmulation->startEnvironmentEmulation($storeId);
 
         try {
-            $paymentBlock = Mage::helper('paymentelv')->getInfoBlock($order->getPayment())
+            $paymentBlock = Mage::helper('payment')->getInfoBlock($order->getPayment())
                 ->setIsSecureMode(true);
             $paymentBlock->getMethod()->setStore($storeId);
             $paymentBlockHtml = $paymentBlock->toHtml();

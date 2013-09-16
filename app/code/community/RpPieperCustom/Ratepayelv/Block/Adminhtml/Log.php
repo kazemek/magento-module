@@ -136,7 +136,7 @@ class RpPieperCustom_Ratepayelv_Block_Adminhtml_Log
      */
     public function getRowUrl($row)
     {
-        return $this->getUrl('*/*/view', array ('log_id' => $row->getId(), 'order_id' => $this->getOrder()->getId(), 'active_tab' => 'order_log_ratepay'));
+        return $this->getUrl('*/*/view', array ('log_id' => $row->getId(), 'order_id' => $this->getOrder()->getId(), 'active_tab' => 'order_log_ratepayelv'));
     }
     
     /**
@@ -146,7 +146,7 @@ class RpPieperCustom_Ratepayelv_Block_Adminhtml_Log
      */
     public function getLogUrl()
     {
-        return $this->getUrl('*/*/view', array ('order_id' => $this->getOrder()->getId(), 'active_tab' => 'order_log_ratepay'));
+        return $this->getUrl('*/*/view', array ('order_id' => $this->getOrder()->getId(), 'active_tab' => 'order_log_ratepayelv'));
     }
     
     /**
@@ -284,7 +284,7 @@ class RpPieperCustom_Ratepayelv_Block_Adminhtml_Log
             'header'    => Mage::helper('ratepayelv')->__('Pi Result'),
             'index'     => 'result_code',
             'sortable'  => false,
-            'renderer'  => 'ratepay/adminhtml_logs_grid_renderer_result',
+            'renderer'  => 'ratepayelv/adminhtml_logs_grid_renderer_result',
             'filter'    => $this->_isFilterAllowed(),
         ));
 

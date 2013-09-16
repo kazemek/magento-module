@@ -205,25 +205,15 @@ class RpPieperCustom_Ratepayelv_Helper_Mapping extends Mage_Core_Helper_Abstract
         if($methodCode == '') {
             $methodCode = $quoteOrOrder->getPayment()->getMethod();
         }
-        $loggingInfo['logging'] = Mage::getStoreConfig('paymentelv/' . $methodCode . '/logging', $quoteOrOrder->getStoreId());
-        $loggingInfo['sandbox'] = Mage::getStoreConfig('paymentelv/' . $methodCode . '/sandbox', $quoteOrOrder->getStoreId());
+        $loggingInfo['logging'] = Mage::getStoreConfig('payment/' . $methodCode . '/logging', $quoteOrOrder->getStoreId());
+        $loggingInfo['sandbox'] = Mage::getStoreConfig('payment/' . $methodCode . '/sandbox', $quoteOrOrder->getStoreId());
         if($quoteOrOrder instanceof Mage_Sales_Model_Order) {
             $loggingInfo['orderId'] = $quoteOrOrder->getRealOrderId();
         } else {
             $loggingInfo['orderId'] = $quoteOrOrder->getReservedOrderId();
         }
         $loggingInfo['transactionId'] = $quoteOrOrder->getPayment()->getAdditionalInformation('transactionId');
-        switch($methodCode) {
-            case 'ratepay_rechnung':
-                $loggingInfo['paymentMethod'] = 'INVOICE';
-                break;
-            case 'ratepay_rate':
-                $loggingInfo['paymentMethod'] = 'INSTALLMENT';
-                break;
-            case 'ratepay_directdebit':
-                $loggingInfo['paymentMethod'] = 'ELV';
-                break;
-        }
+        $loggingInfo['paymentMethod'] = 'ELV';
         $loggingInfo['firstName'] = $quoteOrOrder->getBillingAddress()->getFirstname();
         $loggingInfo['lastName'] = $quoteOrOrder->getBillingAddress()->getLastname();
         return $loggingInfo;
@@ -241,13 +231,13 @@ class RpPieperCustom_Ratepayelv_Helper_Mapping extends Mage_Core_Helper_Abstract
     {
         $head = array();
         if($methodCode == '') {
-            $head['profileId'] = Mage::getStoreConfig('paymentelv/' . $quoteOrOrder->getPayment()->getMethod() . '/profile_id', $quoteOrOrder->getStoreId());
-            $head['securityCode'] = Mage::getStoreConfig('paymentelv/' . $quoteOrOrder->getPayment()->getMethod() . '/security_code', $quoteOrOrder->getStoreId());
+            $head['profileId'] = Mage::getStoreConfig('payment/' . $quoteOrOrder->getPayment()->getMethod() . '/profile_id', $quoteOrOrder->getStoreId());
+            $head['securityCode'] = Mage::getStoreConfig('payment/' . $quoteOrOrder->getPayment()->getMethod() . '/security_code', $quoteOrOrder->getStoreId());
             $head['transactionId'] = $quoteOrOrder->getPayment()->getAdditionalInformation('transactionId');
             $head['transactionShortId'] = $quoteOrOrder->getPayment()->getAdditionalInformation('transactionShortId');
         } else {
-            $head['profileId'] = Mage::getStoreConfig('paymentelv/' . $methodCode . '/profile_id', $quoteOrOrder->getStoreId());
-            $head['securityCode'] = Mage::getStoreConfig('paymentelv/' . $methodCode . '/security_code', $quoteOrOrder->getStoreId());
+            $head['profileId'] = Mage::getStoreConfig('payment/' . $methodCode . '/profile_id', $quoteOrOrder->getStoreId());
+            $head['securityCode'] = Mage::getStoreConfig('payment/' . $methodCode . '/security_code', $quoteOrOrder->getStoreId());
             $head['transactionId'] = '';
             $head['transactionShortId'] = '';
         }
@@ -275,7 +265,7 @@ class RpPieperCustom_Ratepayelv_Helper_Mapping extends Mage_Core_Helper_Abstract
 
         $dob = new Zend_Date($quoteOrOrder->getCustomerDob());//, Zend_Date::ISO_8601);
         $customer['dob'] = $dob->toString("yyyy-MM-dd");
-        $customer['gender'] = Mage::helper("ratepay")->getGenderCode($quoteOrOrder);
+        $customer['gender'] = Mage::helper("ratepayelv")->getGenderCode($quoteOrOrder);
         $customer['firstName'] = $quoteOrOrder->getBillingAddress()->getFirstname();
         $customer['lastName'] = $quoteOrOrder->getBillingAddress()->getLastname();
         $customer['ip'] = Mage::helper('core/http')->getRemoteAddr(false);

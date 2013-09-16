@@ -33,6 +33,7 @@ class RpPieperCustom_Ratepayelv_Block_Adminhtml_Logs_View extends Mage_Adminhtml
         parent::__construct();
 
         $this->_removeButton('edit');
+
     }
 
     /**
@@ -40,6 +41,7 @@ class RpPieperCustom_Ratepayelv_Block_Adminhtml_Logs_View extends Mage_Adminhtml
      */
     protected function _prepareLayout()
     {
+
         $this->setChild('plane', $this->getLayout()->createBlock('ratepayelv/' . $this->_controller . '_view_plane'));
     }
 
