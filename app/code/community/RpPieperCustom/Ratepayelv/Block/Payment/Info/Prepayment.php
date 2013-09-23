@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+<?php
 /**
  * Magento
  *
@@ -19,15 +18,26 @@
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  */
 
--->
-<config>
-    <modules>
-        <RpPieperCustom_Ratepayelv>
-            <active>true</active>
-            <codePool>community</codePool>
-            <depends>
-                <Mage_Payment />
-            </depends>
-        </RpPieperCustom_Ratepayelv>
-    </modules>
-</config>
+class RpPieperCustom_Ratepayelv_Block_Payment_Info_Prepayment extends RpPieperCustom_Ratepayelv_Block_Payment_Info_Abstract
+{
+    /**
+     * Construct
+     */
+    protected function _construct()
+    {
+        parent::_construct();
+        $this->setTemplate('ratepayelv/payment/info/prepayment.phtml');
+    }
+
+    /**
+     * Render as PDF
+     *
+     * @return string
+     */
+    public function toPdf()
+    {
+        $this->setTemplate('ratepayelv/payment/info/prepayment.phtml');
+        return $this->toHtml();
+    }
+
+}

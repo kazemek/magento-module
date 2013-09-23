@@ -213,7 +213,14 @@ class RpPieperCustom_Ratepayelv_Helper_Mapping extends Mage_Core_Helper_Abstract
             $loggingInfo['orderId'] = $quoteOrOrder->getReservedOrderId();
         }
         $loggingInfo['transactionId'] = $quoteOrOrder->getPayment()->getAdditionalInformation('transactionId');
-        $loggingInfo['paymentMethod'] = 'ELV';
+        switch($methodCode) {
+            case 'ratepayelv_prepayment':
+                $loggingInfo['paymentMethod'] = 'PREPAYMENT';
+                break;
+            case 'ratepayelv_directdebit':
+                $loggingInfo['paymentMethod'] = 'ELV';
+                break;
+        }
         $loggingInfo['firstName'] = $quoteOrOrder->getBillingAddress()->getFirstname();
         $loggingInfo['lastName'] = $quoteOrOrder->getBillingAddress()->getLastname();
         return $loggingInfo;
@@ -342,7 +349,14 @@ class RpPieperCustom_Ratepayelv_Helper_Mapping extends Mage_Core_Helper_Abstract
     public function getRequestPayment($object, $amount = '', $request = '')
     {
         $payment = array();
-        $payment['method'] = 'ELV';
+        switch($object->getPayment()->getMethod()) {
+            case 'ratepayelv_prepayment':
+                $payment['method'] = 'PREPAYMENT';
+                break;
+            case 'ratepayelv_directdebit':
+                $payment['method'] = 'ELV';
+                break;
+        }
 
         if($object instanceof Mage_Sales_Model_Order) {
             $payment['currency'] = $object->getOrderCurrencyCode();

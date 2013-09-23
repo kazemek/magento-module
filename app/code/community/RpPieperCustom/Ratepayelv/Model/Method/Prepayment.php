@@ -18,43 +18,41 @@
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  */
 
-class RpPieperCustom_Ratepayelv_Model_Method_Directdebit extends RpPieperCustom_Ratepayelv_Model_Method_Abstract
+class RpPieperCustom_Ratepayelv_Model_Method_Prepayment extends RpPieperCustom_Ratepayelv_Model_Method_Abstract
 {
-    
     /**
      * Payment code
      * 
      * @var string 
      */
-    protected $_code = 'ratepayelv_directdebit';
+    protected $_code = 'ratepayelv_prepayment';
     
     /**
      * Form block identifier
      * 
      * @var string 
      */
-    protected $_formBlockType = 'ratepayelv/payment_form_directdebit';
+    protected $_formBlockType = 'ratepayelv/payment_form_prepayment';
     
     /**
      * Info block identifier
      * 
      * @var string
      */
-    protected $_infoBlockType = 'ratepayelv/payment_info_directdebit';
-    
-    
+    protected $_infoBlockType = 'ratepayelv/payment_info_prepayment';
+
     /**
      * Assign data to info model instance
-     * 
-     * @param mixed $data
-     * @return PayIntelligent_Ratepay_Model_Method_Directdebit 
+     *
+     * @param   mixed $data
+     * @return  Mage_Payment_Model_Info
      */
     public function assignData($data)
     {
+        Mage::getSingleton('core/session')->setDirectDebitFlag(false);
         parent::assignData($data);
         $quote = $this->getHelper()->getQuote();
         $params = $data->getData();
-
         // dob
         if (isset($params[$this->_code . '_day'])) {
             $day   = $data->getData($this->_code . '_day');
@@ -103,23 +101,17 @@ class RpPieperCustom_Ratepayelv_Model_Method_Directdebit extends RpPieperCustom_
                 $this->getHelper()->setTaxvat($quote, $taxvat);
             }
         }
-        
-        // Bank details
-        Mage::getSingleton('core/session')->setDirectDebitFlag(false);
-        if (!empty($params[$this->_code . '_bank_code_number']) && !empty($params[$this->_code . '_account_holder']) && !empty($params[$this->_code . '_account_number'])) {
-            $this->getHelper()->setBankData($params, $quote, $this->_code);
-        }
-        
+
         if(!isset($params[$this->_code . '_agreement'])) {
             Mage::throwException($this->_getHelper()->__('Pi AGB Error'));
         }
         return $this;
     }
-    
+
     /**
      * Validate payment method information object
      *
-     * @return  PayIntelligent_Ratepay_Model_Method_Directdebit
+     * @return  PayIntelligent_Ratepay_Model_Method_Prepayment
      */
     public function validate()
     {
@@ -149,5 +141,5 @@ class RpPieperCustom_Ratepayelv_Model_Method_Directdebit extends RpPieperCustom_
         }
         return $this;
     }
-    
 }
+

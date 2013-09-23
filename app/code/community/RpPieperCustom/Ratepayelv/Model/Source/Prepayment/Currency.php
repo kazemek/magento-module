@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+<?php
 /**
  * Magento
  *
@@ -19,15 +18,22 @@
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  */
 
--->
-<config>
-    <modules>
-        <RpPieperCustom_Ratepayelv>
-            <active>true</active>
-            <codePool>community</codePool>
-            <depends>
-                <Mage_Payment />
-            </depends>
-        </RpPieperCustom_Ratepayelv>
-    </modules>
-</config>
+class  RpPieperCustom_Ratepayelv_Model_Source_Prepayment_Currency
+{
+    /**
+     * Define which Currencies are allowed for payment
+     *
+     * @return array
+     */
+    public function toOptionArray()
+    {
+        $currency = array(
+            array(
+                'label' => Mage::helper('core')->__('Euro'),
+                'value' => 'EUR'
+            )
+        );
+        return $currency;
+    }
+}
+

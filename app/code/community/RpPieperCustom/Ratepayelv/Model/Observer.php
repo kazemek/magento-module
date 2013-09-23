@@ -32,11 +32,12 @@ class RpPieperCustom_Ratepayelv_Model_Observer
             $quote = Mage::getSingleton('checkout/session')->getQuote();
             $skuElv = Mage::getStoreConfig('payment/ratepayelv_directdebit/payment_fee', $quote->getStoreId());
             $paymentMethod = $observer->getEvent()->getData('input')->getData('method');
+            $skuPrepayment = Mage::getStoreConfig('payment/ratepayelv_prepayment/payment_fee', $quote->getStoreId());
             $sku = Mage::getStoreConfig('payment/' . $paymentMethod . '/payment_fee', $quote->getStoreId());
             if (Mage::helper('ratepayelv/payment')->isRatepayPayment($paymentMethod)) {
                 $flag = true;
                 foreach ($quote->getAllItems() as $item) {
-                    if ($item->getSku() == $skuElv && $item->getSku() != $sku) {
+                    if (($item->getSku() == $skuElv || $item->getSku() == $skuPrepayment) && $item->getSku() != $sku) {
                         $quote->removeItem($item->getId());
                     }
                     
@@ -57,7 +58,7 @@ class RpPieperCustom_Ratepayelv_Model_Observer
                 }
             } else {
                 foreach ($quote->getAllItems() as $item) {
-                    if ($item->getSku() == $skuElv) {
+                    if ($item->getSku() == $skuElv || $item->getSku() == $skuPrepayment) {
                         $quote->removeItem($item->getId());
                     }
                 }
@@ -110,9 +111,15 @@ class RpPieperCustom_Ratepayelv_Model_Observer
                     $message = 'PAYMENT_REQUEST SEND (authorize)';
                     $payment = $order->getPayment();
 
+                    if($payment->getMethod() == 'ratepayelv_prepayment') {
+                        $paymentStatus = 'pending_payment';
+                    } else {
+                        $paymentStatus = 'payment_success';
+                    }
+
                     Mage::helper('ratepayelv/payment')->addNewTransaction($payment, Mage_Sales_Model_Order_Payment_Transaction::TYPE_AUTH, null, false, $message);
 
-                    $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, 'payment_success', 'success')->save();
+                    $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, $paymentStatus, 'success')->save();
                 } else {
                     $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, 'payment_failed', 'failure')->save();
                 }
