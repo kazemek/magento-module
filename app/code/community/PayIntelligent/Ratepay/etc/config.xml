@@ -284,6 +284,10 @@
 
     <adminhtml>
 
+        <!--<rewrite>
+            <sales_order_view>PayIntelligent_Ratepay_Block_Adminhtml_Sales_Order_View</sales_order_view>
+        </rewrite>-->
+
         <translate>
             <modules>
                 <PayIntelligent_Ratepay>
@@ -328,6 +332,10 @@
                         <class>ratepay/observer</class>
                         <method>isInvoiceCreated</method>
                     </isInvoiceCreated>
+                    <isPaymentConfirmed>
+                        <class>ratepay/observer</class>
+                        <method>isPaymentConfirmed</method>
+                    </isPaymentConfirmed>
                 </observers>
             </sales_order_shipment_save_before>
 

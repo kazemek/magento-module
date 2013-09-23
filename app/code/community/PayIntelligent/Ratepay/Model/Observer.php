@@ -318,6 +318,16 @@ class PayIntelligent_Ratepay_Model_Observer
         }
     }
 
+    public function isPaymentConfirmed(Varien_Event_Observer $observer)
+    {
+        $order = $observer->getEvent()->getShipment()->getOrder();
+        if (Mage::helper('ratepay/payment')->isRatepayPayment($order->getPayment()->getMethod())) {
+            if ($order->getStatus() == 'pending_payment') {
+                Mage::throwException(Mage::helper('ratepay')->__('Pi Payment is not confirmed.'));
+            }
+        }
+    }
+
     /**
      * Is the given creditmemo allowed
      *

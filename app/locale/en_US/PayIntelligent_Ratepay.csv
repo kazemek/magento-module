@@ -255,5 +255,6 @@
 "Pi Invoice", "Berechnen"
 "Pi Creditmemo", "Retournieren"
 "Pi Please invoice the articles you want to ship.","Please invoice the articles you want to ship."
+"Pi Payment is not confirmed.","Versand nicht m&ouml;glich. Zahlungsbest&auml;tigung steht noch aus"
 "merchant_config", "H&auml;ndlerkonfiguration"
 "installment_config", "Ratenkonfiguration"

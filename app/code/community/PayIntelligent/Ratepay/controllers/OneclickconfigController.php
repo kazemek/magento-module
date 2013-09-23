@@ -36,8 +36,14 @@ class PayIntelligent_Ratepay_OneclickconfigController extends Mage_Adminhtml_Con
      */
     public function configAction()
     {
+        // saving config
         $this->_setConfiguration($this->_callConfigRequest());
 
+        // flushing magento cache
+        Mage::dispatchEvent('adminhtml_cache_flush_all');
+        Mage::app()->getCacheInstance()->flush();
+
+        // reopen the configuration grid
         $this->backToConfiguration();
     }
 
