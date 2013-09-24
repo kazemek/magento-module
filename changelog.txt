@@ -1,9 +1,12 @@
 ***********************************************************
-**********| Version 3.0.0 - Released 2013-09-04 |**********
+**********| Version 3.0.0 - Released 2013-XX-XX |**********
 ***********************************************************
- * added the fourth RP payment method 'prepayment'/'Vorkasse'.
-   still incomplete without callback infrastructure
+ * added the fourth RP payment method
+   'prepayment'/'Vorkasse'. Still incomplete without
+   callback infrastructure
  * added 1 click config incl cached configration response
+ * added different customer and company field to
+   shipping address
  * adapted Ratenrechner
 
 ***********************************************************
