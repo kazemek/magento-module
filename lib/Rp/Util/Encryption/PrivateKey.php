@@ -30,7 +30,7 @@ class Rp_Util_Encryption_PrivateKey
     private function createPrivateKey()
     {
         $datei = fopen($this->_keyPath, 'w');
-        fwrite($datei, '<?php DEFINE ("PR_PRIVATE_KEY", "'
+        fwrite($datei, '<?php DEFINE ("RP_PRIVATE_KEY", "'
             . $this->createRandomString(15, true)
             . $this->createRandomString(35, false)
             . $this->createRandomString(14, true) . '");'

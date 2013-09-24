@@ -29,7 +29,11 @@ class RpPieperCustom_Ratepayelv_Helper_Payment extends Mage_Core_Helper_Abstract
      */
     public function isRatepayPayment($code)
     {
-        return true;
+        switch ($code) {
+            case 'ratepayelv_directdebit':
+                return true;
+        }
+        return false;
     }
 
     /**
